@@ -1,5 +1,4 @@
-!/decrypted
 /decrypted/*
 /pass
-!/crypt
 /crypt/*
+!.keep
