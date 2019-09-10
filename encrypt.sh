@@ -1,7 +1,7 @@
 #!/bin/bash
-for file in $HOME/keys/crypt/*
+for file in crypt/*
 do
-	gpg --batch --yes --passphrase-file $HOME/keys/pass -o "$HOME/keys/encrypted/$(basename $file).gpg" -c $file &&
-	rm -f $file
+	gpg --batch --yes --passphrase-file pass -o "encrypted/$(basename $file).gpg" -c $file &&
+	mv -f $file -t decrypted
 done
 
