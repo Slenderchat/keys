@@ -1,7 +1,7 @@
 #!/bin/bash
 for file in crypt/*
 do
-	gpg --batch --yes --passphrase-file pass -o "encrypted/$(basename $file).gpg" -c $file &&
+	gpg --batch --yes -o "encrypted/$(basename $file).gpg" -r steeplike@gmail.com -e $file &&
 	mv -f $file -t decrypted
 done
 
