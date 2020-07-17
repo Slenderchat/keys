@@ -1,1 +1,4 @@
-/pass
+*
+!decrypt.sh
+!encrypt.sh
+!keychain.tar.gpg

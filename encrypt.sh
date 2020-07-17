@@ -1,6 +1,6 @@
 #!/bin/bash
-for file in crypt/*
-do
-	gpg --batch --yes -o "encrypted/$(basename $file).gpg" -r steeplike@gmail.com -se $file &&
-	mv -f $file -t decrypted
-done
+FIFO=.encrypt.sh.temp
+mkfifo $FIFO
+tar -c -C decrypted -f $FIFO . &
+gpg --batch --yes -q -r steeplike@gmail.com -o keychain.tar.gpg -se $FIFO
+rm $FIFO

@@ -1,10 +1,7 @@
 #!/bin/bash
+FIFO=.decrypt.sh.temp
+mkfifo $FIFO
 mkdir -p decrypted
-for file in encrypted/*;
-do
-	gpg --batch --yes -o decrypted/$(basename ${file%.gpg}) -d $file
-done
-pushd decrypted
-tar xf pki.tar.xz
-rm pki.tar.xz
-popd
+gpg --batch --yes -q -o $FIFO -d keychain.tar.gpg &
+tar -x -C decrypted -f $FIFO
+rm $FIFO
